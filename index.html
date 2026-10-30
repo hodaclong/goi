@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Gọi điện</title>
+<style>
+  body{margin:0;font-family:-apple-system,system-ui,sans-serif;background:#f6f7f9;
+       display:flex;min-height:100vh;align-items:center;justify-content:center}
+  a{display:block;padding:28px 44px;font-size:30px;font-weight:600;background:#16a34a;
+    color:#fff;border-radius:18px;text-decoration:none;text-align:center}
+  p{color:#666;text-align:center;font-size:16px}
+</style>
+</head>
+<body>
+<div>
+  <a id="btn" href="#">📞 Gọi</a>
+  <p id="msg"></p>
+</div>
+<script>
+  // Số điện thoại nằm sau dấu # nên không được gửi lên máy chủ.
+  var p = decodeURIComponent(location.hash.slice(1)).replace(/[^0-9+]/g, '');
+  var btn = document.getElementById('btn');
+  if (p.length >= 8) {
+    btn.href = 'tel:' + p;
+    btn.textContent = '📞 Gọi ' + p;
+    document.title = 'Gọi ' + p;
+  } else {
+    btn.style.display = 'none';
+    document.getElementById('msg').textContent = 'Thiếu số điện thoại.';
+  }
+</script>
+</body>
+</html>
